@@ -1,0 +1,13 @@
+{
+  "extends": "./packages/typescript-config/base.json",
+  "include": [".", "../commitlint.config.ts", "apps/**/*.d.ts", "libs/**/*.ts"],
+  "exclude": ["dist", "build", "node_modules"],
+
+  "compilerOptions": {
+    "lib": ["ES2021"],
+    "target": "es2021",
+    "paths": {
+      "@*": ["./apps/web/*"]
+    }
+  }
+}

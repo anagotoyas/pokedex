@@ -1,0 +1,15 @@
+{
+    "extends": "./base.json",
+    "compilerOptions": {
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true,
+        "noImplicitAny": true,
+        "allowImportingTsExtensions": true,
+        "noEmit": true,
+        "noImplicitReturns": false,
+        "noFallthroughCasesInSwitch": true
+    },
+    "ts-node": {
+        "esm": true
+    }
+}
