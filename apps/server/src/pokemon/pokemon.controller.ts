@@ -1,7 +1,7 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { PokemonService } from './pokemon.service';
-import { PokemonPaginationDto } from './dto/pokemon-pagination.dto';
-import { Pokemon } from './interfaces/pokemon.interface';
+import { GetAllPokemonsResponseDto } from './dto/get-all-pokemons-response.dto';
+import { PaginationDto } from 'src/core/dtos/pagination.dto';
 
 @Controller('pokemon')
 export class PokemonController {
@@ -9,16 +9,8 @@ export class PokemonController {
 
   @Get()
   async getAll(
-    @Query() paginationDto: PokemonPaginationDto,
-  ): Promise<Pokemon[]> {
-    return this.pokemonService.findAll(
-      paginationDto.limit,
-      paginationDto.offset,
-    );
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.pokemonService.findOne(+id);
+    @Query() query: PaginationDto,
+  ): Promise<GetAllPokemonsResponseDto> {
+    return this.pokemonService.filterPokemons(query);
   }
 }

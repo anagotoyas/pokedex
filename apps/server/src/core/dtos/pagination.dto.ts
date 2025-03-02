@@ -1,7 +1,7 @@
 import { Transform } from 'class-transformer';
-import { IsInt, Min, IsOptional } from 'class-validator';
+import { IsInt, Min, IsOptional, IsString } from 'class-validator';
 
-export class PokemonPaginationDto {
+export class PaginationDto {
   @Transform(({ value }) => Number(value))
   @IsOptional()
   @IsInt()
@@ -13,4 +13,9 @@ export class PokemonPaginationDto {
   @IsInt()
   @Min(0)
   offset?: number = 0;
+
+  @Transform(({ value }) => value.trim())
+  @IsString()
+  @IsOptional()
+  search?: string;
 }
