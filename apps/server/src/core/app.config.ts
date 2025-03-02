@@ -8,5 +8,6 @@ export default registerAs(
     env: process.env.NODE_ENV || AppEnvironment.DEV,
     port: process.env.PORT ? +process.env.PORT : 3000,
     pokeUrl: process.env.POKE_API_URL,
+    defaultLimit: process.env.DEFAULT_LIMIT ? +process.env.DEFAULT_LIMIT : 10,
   }),
 );

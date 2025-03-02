@@ -1,18 +1,19 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { ConfigType } from '@nestjs/config';
-import appConfig from 'src/core/app.config';
+import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { Pokemon } from './interfaces/pokemon.interface';
 
 @Injectable()
 export class PokemonService {
   private readonly pokeApiUrl: string;
 
-  constructor(
-    @Inject('app') private readonly configService: ConfigType<typeof appConfig>,
-  ) {
-    this.pokeApiUrl = this.configService.pokeUrl;
+  constructor(private readonly configService: ConfigService) {
+    this.pokeApiUrl = this.configService.get<string>('app.pokeUrl');
   }
-  findAll() {
-    return `This action returns all pokemon`;
+  async findAll(limit: number, offset: number): Promise<Pokemon[]> {
+    const response = await fetch(
+      `${this.pokeApiUrl}?limit=${limit}&offset=${offset}`,
+    );
+    return response.json();
   }
 
   findOne(id: number) {

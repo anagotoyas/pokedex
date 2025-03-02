@@ -12,4 +12,5 @@ export const appValidationSchema = Joi.object({
     .default(AppEnvironment.DEV),
   PORT: Joi.number().positive().integer().default(3000),
   POKE_API_URL: Joi.string().required(),
+  DEFAULT_LIMIT: Joi.number().positive().integer().default(10),
 });
