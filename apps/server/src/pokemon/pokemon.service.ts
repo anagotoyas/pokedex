@@ -6,6 +6,7 @@ import { GetAllPokemonsResponseDto } from './dto/get-all-pokemons-response.dto';
 import { ConfigService } from '@nestjs/config';
 import { PaginationDto } from 'src/core/dtos/pagination.dto';
 import { Pokemon, PokemonOverview, Resource } from './types';
+import { GetPokemonDetailResponseDto } from './dto/get-pokemon-detail-response.dto';
 
 const TTL_24_HOURS = 86400;
 const TOTAL_POKEMON = 1304;
@@ -119,6 +120,40 @@ export class PokemonService {
     } catch (error) {
       this.logger.error(`Failed to fetch Pokémon ${name}`, error.stack);
       throw new Error(`Failed to fetch Pokémon ${name}`);
+    }
+  }
+
+  async getPokemonDetails(id: number): Promise<GetPokemonDetailResponseDto> {
+    try {
+      const cacheKey = `pokemon-full:${id}`;
+      const cachedDetails =
+        await this.cacheManager.get<GetPokemonDetailResponseDto>(cacheKey);
+
+      if (cachedDetails) return cachedDetails;
+      const response = await firstValueFrom(
+        this.httpService.get<Pokemon>(`${this.pokeApiUrl}/${id}`),
+      );
+
+      const results = {
+        id: response.data.id,
+        name: response.data.name,
+        height: response.data.height,
+        weight: response.data.weight,
+        abilities: response.data.abilities.map((obj) => obj.ability.name),
+        types: response.data.types.map((obj) => obj.type.name),
+        img: response.data.sprites.front_default,
+        stats: response.data.stats.map((obj) => ({
+          name: obj.stat.name,
+          value: obj.base_stat,
+        })),
+      };
+
+      await this.cacheManager.set(cacheKey, results, TTL_24_HOURS);
+
+      return results;
+    } catch (error) {
+      this.logger.error(`Failed to fetch Pokémon with ID: ${id}`, error.stack);
+      throw new Error(`Failed to fetch Pokémon with ID: ${id}`);
     }
   }
 }
