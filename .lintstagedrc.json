@@ -1,0 +1,6 @@
+{
+    "*.{js,jsx,ts,tsx,css,scss,html,md,yml}": ["npm run format", "git add ."],
+    "apps/**/*.{js,ts,jsx,tsx}": ["eslint --ext ts,tsx,js,jsx"],
+    "packages/**/*.{js,ts,jsx,tsx}": ["eslint --ext ts,tsx,js,jsx"]
+  }
+  
