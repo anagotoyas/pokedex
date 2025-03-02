@@ -7,5 +7,6 @@ export default registerAs(
   (): IAppConfig => ({
     env: process.env.NODE_ENV || AppEnvironment.DEV,
     port: process.env.PORT ? +process.env.PORT : 3000,
+    pokeUrl: process.env.POKE_API_URL,
   }),
 );
