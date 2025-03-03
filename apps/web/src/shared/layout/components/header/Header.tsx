@@ -1,14 +1,11 @@
-import { Flex, Image, Text } from '@mantine/core';
-import pokeball from '../../../assets/pokeball.webp';
-import classes from './header.module.css';
+import { Flex, Image } from '@mantine/core';
+import pokedex from '../../../assets/pokedexpng.png';
 
 export const Header = () => {
   return (
-    <Flex mih={65} justify="center" p={8}>
-      <Flex justify="center" align="center" gap={8}>
-        <Image h={60} src={pokeball} alt="Mantine logo" />
-        <Text className={classes.text}>Pokédex</Text>
-        <Image h={60} src={pokeball} alt="Mantine logo" />
+    <Flex mih={65} justify="start">
+      <Flex justify="center" align="center">
+        <Image h={68} src={pokedex} alt="Pokedex logo" />
       </Flex>
     </Flex>
   );

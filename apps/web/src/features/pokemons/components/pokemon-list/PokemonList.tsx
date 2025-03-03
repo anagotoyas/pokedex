@@ -3,6 +3,7 @@ import { usePokemonStore } from '../../../../store/pokemon.store';
 import { useFetchPokemons } from '../../hooks/useFetchPokemons.hook';
 import { SearchBar } from '../../../../shared/ui/search-bar/SearchBar';
 import { Flex } from '@mantine/core';
+import { PokemonCard } from '../pokemon-card';
 
 export const PokemonList = () => {
   const { data, isLoading } = useFetchPokemons();
@@ -12,19 +13,20 @@ export const PokemonList = () => {
   }, [setFilters]);
   return (
     <div>
-      <Flex justify="center" mt={16}>
+      <Flex justify="start" mt={16}>
         <SearchBar
           value={filters?.search}
+          placeholder="Search your pokemon!"
           onChange={(value) => setFilters({ search: value })}
         />
       </Flex>
       {isLoading && <p>Loading...</p>}
       {data?.data && (
-        <ul>
+        <Flex wrap="wrap" gap={32} rowGap={82} mt={60} justify="center">
           {data.data.map((pokemon) => (
-            <li key={pokemon.id}>{pokemon.name}</li>
+            <PokemonCard key={pokemon.id} pokemon={pokemon} />
           ))}
-        </ul>
+        </Flex>
       )}
     </div>
   );

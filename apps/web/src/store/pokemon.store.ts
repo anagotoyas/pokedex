@@ -1,9 +1,9 @@
 import { create } from 'zustand';
-import { PokemonFilter } from '../shared/types';
+import { Filter } from '../shared/types';
 
 type PokemonStore = {
-  filters?: PokemonFilter;
-  setFilters: (filters?: PokemonFilter) => void;
+  filters?: Filter;
+  setFilters: (filters?: Filter) => void;
 };
 
 export const usePokemonStore = create<PokemonStore>((set) => ({

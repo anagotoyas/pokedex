@@ -1,5 +1,5 @@
 import client from '../../../api/client';
-import { PokemonFilter } from '../../../shared/types';
+import { Filter } from '../../../shared/types';
 import { PokemonOverview } from '../types';
 
 export type FetchPokemonsResponse = {
@@ -9,7 +9,7 @@ export type FetchPokemonsResponse = {
   offset: number;
 };
 
-export const fetchPokemons = async (filters?: PokemonFilter) => {
+export const fetchPokemons = async (filters?: Filter) => {
   const reponse = await client.get<FetchPokemonsResponse>('/pokemon', {
     params: filters,
   });

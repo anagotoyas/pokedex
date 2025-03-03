@@ -1,6 +1,7 @@
 import { ActionIcon, Input } from '@mantine/core';
 import { IconPlaystationX, IconSearch } from '@tabler/icons-react';
 import { useCallback, useEffect, useState } from 'react';
+import classes from './search-bar.module.css';
 
 interface TextSearchFieldProps {
   onChange: (value: string | undefined) => void;
@@ -28,8 +29,7 @@ export const SearchBar = ({
 
   return (
     <Input
-      miw={300}
-      maw={500}
+      w="100%"
       radius="md"
       onChange={handleOnChange}
       value={text ?? ''}
@@ -51,6 +51,9 @@ export const SearchBar = ({
       }
       placeholder={placeholder}
       autoFocus
+      classNames={{
+        input: classes.input,
+      }}
     />
   );
 };

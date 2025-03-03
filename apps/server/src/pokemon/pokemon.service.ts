@@ -1,4 +1,4 @@
-import { Inject, Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 import { Cache, CACHE_MANAGER } from '@nestjs/cache-manager';
@@ -7,6 +7,7 @@ import { ConfigService } from '@nestjs/config';
 import { PaginationDto } from 'src/core/dtos/pagination.dto';
 import { Pokemon, PokemonOverview, Resource } from './types';
 import { GetPokemonDetailResponseDto } from './dto/get-pokemon-detail-response.dto';
+import { formatName } from 'src/utils/format-name';
 
 const TTL_24_HOURS = 86400;
 const TOTAL_POKEMON = 1304;
@@ -14,7 +15,6 @@ const TOTAL_POKEMON = 1304;
 @Injectable()
 export class PokemonService {
   private readonly pokeApiUrl: string;
-  private readonly logger = new Logger(PokemonService.name);
 
   constructor(
     private readonly httpService: HttpService,
@@ -107,7 +107,7 @@ export class PokemonService {
 
       const details: PokemonOverview = {
         id: response.data.id,
-        name: response.data.name,
+        name: formatName(response.data.name),
         types: response.data.types.map((obj) => obj.type.name),
         img: response.data.sprites.front_default,
       };
