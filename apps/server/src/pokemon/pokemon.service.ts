@@ -109,7 +109,7 @@ export class PokemonService {
         id: response.data.id,
         name: formatName(response.data.name),
         types: response.data.types.map((obj) => obj.type.name),
-        img: response.data.sprites.front_default,
+        img: response.data.sprites.other['official-artwork'].front_default,
       };
 
       await this.cacheManager.set(cacheKey, details, TTL_24_HOURS);

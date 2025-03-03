@@ -1,4 +1,11 @@
 .container {
-  background-color: #fefcfd;
-  padding: 2rem 4rem;
+  background-color: var(--color-white);
+  padding: 1rem 4rem;
+  position: relative;
+}
+
+.body {
+  padding: 100px 0;
+  width: 100%;
+  height: calc(100vh - 100px);
 }
