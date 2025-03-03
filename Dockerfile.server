@@ -1,0 +1,23 @@
+ARG NODE_IMAGE=node:20
+FROM ${NODE_IMAGE} AS build
+
+WORKDIR /usr/src
+
+# Copy the root package.json AND package-lock.json
+COPY --chown=node:node package*.json ./
+
+# Bundle app source
+COPY --chown=node:node . .
+
+# Install app dependencies for development environment
+RUN npm i
+
+# Run the build command which creates the production bundle
+RUN npm run build:server
+
+USER node
+
+EXPOSE 3000
+
+# Command to run the application
+ENTRYPOINT ["sh", "-c", "node apps/server/dist/main"]
