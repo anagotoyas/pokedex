@@ -1,4 +1,4 @@
-import { Inject, Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 import { Cache, CACHE_MANAGER } from '@nestjs/cache-manager';
@@ -41,7 +41,6 @@ export class PokemonService {
       await this.cacheManager.set(cacheKey, allPokemon, TTL_24_HOURS);
       return allPokemon;
     } catch (error) {
-      this.logger.error('Failed to fetch Pokémon list', error.stack);
       throw new Error('Failed to fetch Pokémon list');
     }
   }
@@ -90,7 +89,6 @@ export class PokemonService {
 
       return result;
     } catch (error) {
-      this.logger.error('Failed to filter Pokémon', error.stack);
       throw new Error('Failed to filter Pokémon');
     }
   }
@@ -118,14 +116,13 @@ export class PokemonService {
 
       return details;
     } catch (error) {
-      this.logger.error(`Failed to fetch Pokémon ${name}`, error.stack);
       throw new Error(`Failed to fetch Pokémon ${name}`);
     }
   }
 
   async getPokemonDetails(id: number): Promise<GetPokemonDetailResponseDto> {
+    const cacheKey = `pokemon-full:${id}`;
     try {
-      const cacheKey = `pokemon-full:${id}`;
       const cachedDetails =
         await this.cacheManager.get<GetPokemonDetailResponseDto>(cacheKey);
 
@@ -152,7 +149,11 @@ export class PokemonService {
 
       return results;
     } catch (error) {
-      this.logger.error(`Failed to fetch Pokémon with ID: ${id}`, error.stack);
+      if (error.response?.status === 404) {
+        await this.cacheManager.set(cacheKey, null, TTL_24_HOURS);
+
+        throw new NotFoundException(`Pokémon with ID ${id} not found`);
+      }
       throw new Error(`Failed to fetch Pokémon with ID: ${id}`);
     }
   }
