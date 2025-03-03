@@ -1,9 +1,15 @@
-import { Flex } from '@mantine/core';
 import { RouteObject } from 'react-router-dom';
+import { Layout } from '../layout';
 
 export const AppRoutes: RouteObject[] = [
   {
     path: '/',
-    element: <Flex c="red">Hello, world!</Flex>,
+    element: <Layout />,
+    children: [
+      {
+        path: '',
+        element: <div>Home</div>,
+      },
+    ],
   },
 ];
