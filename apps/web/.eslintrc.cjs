@@ -6,9 +6,6 @@ module.exports = {
   extends: [ "@repo/eslint-config/web"],
   ignorePatterns: ["dist"],
   rules: {
-    'react-refresh/only-export-components': [
-      'warn',
-      { allowConstantExport: true },
-    ],
+    "security/detect-object-injection": "off",
   },
 };

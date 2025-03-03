@@ -3,6 +3,7 @@
   "@repo/*": ["../packages/*"],
   "include": [
     "src",
-    "vite.config.ts"
+    "vite.config.ts",
+    ".prettierrc.cjs",
   ]
 }
