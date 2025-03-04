@@ -1,6 +1,6 @@
 import { RouteObject } from 'react-router-dom';
 import { Layout } from '../shared/layout';
-import { PokemonList } from '../features/pokemons/components/pokemon-list';
+import { PokemonHome } from '../features/pokemons/components/pokemon-home';
 
 export const AppRoutes: RouteObject[] = [
   {
@@ -9,7 +9,7 @@ export const AppRoutes: RouteObject[] = [
     children: [
       {
         path: '',
-        element: <PokemonList />,
+        element: <PokemonHome />,
       },
     ],
   },

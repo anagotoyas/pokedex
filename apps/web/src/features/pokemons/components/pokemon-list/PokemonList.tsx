@@ -6,8 +6,9 @@ import { usePokemonStore } from '../../../../store/pokemon.store';
 
 export const PokemonList = () => {
   const { data, isLoading } = useFetchPokemons();
-  const { filters, setFilters } = usePokemonStore();
+  const { filters, setFilters, selectedPokemon } = usePokemonStore();
   console.log('filters', filters);
+  console.log('selectedPokemon', selectedPokemon);
 
   return (
     <>

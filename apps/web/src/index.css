@@ -18,6 +18,9 @@
   --color-gray: #9b9b9b;
   --color-primary: #3f50dc;
   --color-black: #2a2a2a;
+  --color-yellow: #fff0b3;
+  --color-orange: #ffcc80;
+  --color-green: #5ac97f;
 }
 
 body {

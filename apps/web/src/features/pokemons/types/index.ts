@@ -18,3 +18,25 @@ export type PokemonType =
   | 'fire'
   | 'water'
   | 'grass';
+
+export type PokemonStat =
+  | 'hp'
+  | 'attack'
+  | 'defense'
+  | 'special-attack'
+  | 'special-defense'
+  | 'speed';
+
+export type PokemonDetailed = {
+  id: number;
+  name: string;
+  types: PokemonType[];
+  img: string;
+  height: number;
+  weight: number;
+  abilities: string[];
+  stats: {
+    name: PokemonStat;
+    value: number;
+  }[];
+};

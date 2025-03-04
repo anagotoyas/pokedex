@@ -1,0 +1,44 @@
+.modal,
+.body {
+  padding: 0;
+  margin: 0;
+}
+
+.body-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 2rem 2rem;
+}
+
+.image {
+  width: 150px;
+}
+
+.header {
+  background-color: var(--color-light-purple);
+  padding: 0 0.5rem 0 0;
+  position: absolute;
+  right: 0;
+}
+
+.title {
+  font-family: 'Train One', system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 3rem;
+  text-align: center;
+  color: var(--color-primary);
+}
+
+.section-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: var(--color-light-purple);
+  border-bottom-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+}

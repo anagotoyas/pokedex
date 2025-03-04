@@ -7,5 +7,6 @@ module.exports = {
   ignorePatterns: ["dist"],
   rules: {
     "security/detect-object-injection": "off",
+    "@typescript-eslint/no-redundant-type-constituents": "off"
   },
 };

@@ -37,25 +37,27 @@ export const Pagination = ({
         }}
         {...rest}
       />
-      <Select
-        withCheckIcon={false}
-        classNames={{
-          root: classes['root-select'],
-          wrapper: classes['root-select__wrapper'],
-          input: classes['root-select__wrapper__input'],
-          section: classes['root-select__wrapper__section'],
-          dropdown: classes.dropdown,
-          option: classes.dropdown__option,
-        }}
-        onChange={handleChangeSelect}
-        allowDeselect={false}
-        value={limit.toString()}
-        comboboxProps={{
-          position: 'top',
-          middlewares: { flip: false, shift: false },
-        }}
-        data={limits}
-      />
+      {total > 0 && (
+        <Select
+          withCheckIcon={false}
+          classNames={{
+            root: classes['root-select'],
+            wrapper: classes['root-select__wrapper'],
+            input: classes['root-select__wrapper__input'],
+            section: classes['root-select__wrapper__section'],
+            dropdown: classes.dropdown,
+            option: classes.dropdown__option,
+          }}
+          onChange={handleChangeSelect}
+          allowDeselect={false}
+          value={limit.toString()}
+          comboboxProps={{
+            position: 'top',
+            middlewares: { flip: false, shift: false },
+          }}
+          data={limits}
+        />
+      )}
     </div>
   );
 };

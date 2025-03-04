@@ -135,12 +135,14 @@ export class PokemonService {
 
       const results = {
         id: response.data.id,
-        name: response.data.name,
+        name: formatName(response.data.name),
         height: response.data.height,
         weight: response.data.weight,
         abilities: response.data.abilities.map((obj) => obj.ability.name),
         types: response.data.types.map((obj) => obj.type.name),
-        img: response.data.sprites.front_default,
+        img:
+          response.data.sprites.other['official-artwork'].front_default ??
+          response.data.sprites.front_default,
         stats: response.data.stats.map((obj) => ({
           name: obj.stat.name,
           value: obj.base_stat,

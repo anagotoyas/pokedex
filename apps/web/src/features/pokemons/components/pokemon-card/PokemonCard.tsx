@@ -2,19 +2,23 @@ import { Badge, Flex, Image, Text } from '@mantine/core';
 import { PokemonOverview } from '../../types';
 import classes from './pokemon-card.module.css';
 import { getPokemonTypeColor } from '../../utils/get-pokemon-type-color';
+import { usePokemonStore } from '../../../../store/pokemon.store';
 
 interface PokemonCardProps {
   pokemon: PokemonOverview;
 }
 
 export const PokemonCard = ({ pokemon }: PokemonCardProps) => {
+  const { openModal } = usePokemonStore();
   const { id, name, types, img } = pokemon;
+
   return (
     <Flex
       key={id}
       className={classes.container}
       pos="relative"
       justify="center"
+      onClick={() => openModal(id)}
     >
       <Image src={img} className={classes.pokemon} />
       <Flex justify="center" align="center" direction="column" gap={16}>
