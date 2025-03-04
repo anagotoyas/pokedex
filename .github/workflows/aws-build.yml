@@ -31,3 +31,13 @@ jobs:
         run: |
           docker build --build-arg NODE_IMAGE=node:20-alpine --no-cache -t $ECR_SERVER_REGISTRY/$ECR_SERVER_REPOSITORY -f Dockerfile.server .
           docker push $ECR_SERVER_REGISTRY/$ECR_SERVER_REPOSITORY
+
+      - name: Build, tag, and push the Web image to Amazon ECR
+        id: build-image-web
+        env:
+          ECR_WEB_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_WEB_REPOSITORY: ${{ secrets.REPO_NAME_WEB }}
+          VITE_APP_BASE_URL: ${{ secrets.VITE_APP_BASE_URL }}
+        run: |
+          docker build --build-arg VITE_APP_BASE_URL=$VITE_APP_BASE_URL --build-arg NGINX_IMAGE=nginx:stable-alpine --build-arg NODE_IMAGE=node:20-alpine -t $ECR_WEB_REGISTRY/$ECR_WEB_REPOSITORY -f Dockerfile.web .
+          docker push $ECR_WEB_REGISTRY/$ECR_WEB_REPOSITORY
