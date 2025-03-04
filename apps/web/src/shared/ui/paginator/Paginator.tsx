@@ -10,7 +10,7 @@ interface PaginationProps extends PaginationPropsMantine {
   setLimit?: (limit: number) => void;
 }
 
-export const Pagination = ({
+export const Paginator = ({
   limit = 100,
   total,
   value,

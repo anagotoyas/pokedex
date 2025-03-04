@@ -2,7 +2,7 @@ import { Flex } from '@mantine/core';
 import { PokemonCard } from '../pokemon-card';
 import { PokemonOverview } from '../../types';
 import { PokemonListSkeleton } from './components/pokemon-list-skeleton';
-import { Pagination } from '../../../../shared/ui/pagination';
+import { Paginator } from '../../../../shared/ui/paginator';
 
 interface PokemonListProps {
   pokemons?: PokemonOverview[];
@@ -32,7 +32,7 @@ export const PokemonList = ({
           <PokemonCard key={pokemon.id} pokemon={pokemon} />
         ))}
       </Flex>
-      <Pagination
+      <Paginator
         total={total ?? 0}
         limit={filters?.limit}
         setLimit={onLimitChange}
