@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint --cache '**/*.{ts,tsx}'",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "format:check": "prettier --check --log-level warn ."
   },
   "dependencies": {
     "@mantine/core": "^7.17.1",

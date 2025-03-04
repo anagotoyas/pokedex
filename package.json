@@ -4,6 +4,8 @@
   "scripts": {
     "build": "turbo run build",
     "build:server": "turbo build --filter=server",
+    "build:web": "turbo build --filter=web",
+    "format:check": "prettier --check '**/*.{js,ts,jsx,tsx}'",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
