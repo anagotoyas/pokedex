@@ -1,36 +1,44 @@
-import { useFetchPokemons } from '../../hooks/useFetchPokemons.hook';
 import { Flex } from '@mantine/core';
 import { PokemonCard } from '../pokemon-card';
 import { Pagination } from '../../../../shared/ui/pagination/pagination';
-import { usePokemonStore } from '../../../../store/pokemon.store';
+import { PokemonOverview } from '../../types';
+import { PokemonListSkeleton } from './components/pokemon-list-skeleton';
 
-export const PokemonList = () => {
-  const { data, isLoading } = useFetchPokemons();
-  const { filters, setFilters, selectedPokemon } = usePokemonStore();
-  console.log('filters', filters);
-  console.log('selectedPokemon', selectedPokemon);
+interface PokemonListProps {
+  pokemons?: PokemonOverview[];
+  total?: number;
+  filters: { limit?: number; offset?: number };
+  onPageChange: (page: number) => void;
+  onLimitChange: (limit: number) => void;
+  isLoading?: boolean;
+}
+
+export const PokemonList = ({
+  pokemons,
+  total,
+  filters,
+  onPageChange,
+  onLimitChange,
+  isLoading,
+}: PokemonListProps) => {
+  if (isLoading || !pokemons || !total) {
+    return <PokemonListSkeleton />;
+  }
 
   return (
     <>
-      {isLoading && <p>Loading...</p>}
-      {data?.data && (
-        <>
-          <Flex wrap="wrap" gap={32} rowGap={72} mt={60} justify="center">
-            {data.data.map((pokemon) => (
-              <PokemonCard key={pokemon.id} pokemon={pokemon} />
-            ))}
-          </Flex>
-          <Pagination
-            total={data.total}
-            limit={filters?.limit}
-            setLimit={(limit) => setFilters({ limit, offset: 0 })}
-            value={Math.floor((filters.offset ?? 0) / (filters.limit ?? 1)) + 1}
-            onChange={(page) =>
-              setFilters({ offset: (page - 1) * (filters.limit ?? 1) })
-            }
-          />
-        </>
-      )}
+      <Flex wrap="wrap" gap={32} rowGap={72} mt={60} justify="center">
+        {pokemons?.map((pokemon) => (
+          <PokemonCard key={pokemon.id} pokemon={pokemon} />
+        ))}
+      </Flex>
+      <Pagination
+        total={total ?? 0}
+        limit={filters?.limit}
+        setLimit={onLimitChange}
+        value={Math.floor((filters.offset ?? 0) / (filters.limit ?? 1)) + 1}
+        onChange={onPageChange}
+      />
     </>
   );
 };

@@ -14,10 +14,15 @@
 
 .image {
   width: 150px;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
 }
 
 .header {
-  background-color: var(--color-light-purple);
+  background-color: transparent;
   padding: 0 0.5rem 0 0;
   position: absolute;
   right: 0;
@@ -27,9 +32,17 @@
   font-family: 'Train One', system-ui;
   font-weight: 400;
   font-style: normal;
-  font-size: 3rem;
+  font-size: 5rem;
   text-align: center;
   color: var(--color-primary);
+  opacity: 0.3;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  z-index: 1;
+  width: 100%;
 }
 
 .section-image {
@@ -41,4 +54,7 @@
   background-color: var(--color-light-purple);
   border-bottom-left-radius: 100px;
   border-bottom-right-radius: 100px;
+  position: relative;
+  overflow: hidden;
+  min-height: 200px;
 }
