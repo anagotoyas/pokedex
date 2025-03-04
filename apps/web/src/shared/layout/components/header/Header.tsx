@@ -1,6 +1,6 @@
 import { Flex, Image } from '@mantine/core';
 import pokedex from '../../../assets/pokedexpng.png';
-import { SearchBar } from '../../../ui/search-bar/SearchBar';
+import { SearchBar } from '../../../ui/search-bar';
 import { usePokemonStore } from '../../../../store/pokemon.store';
 import classes from './header.module.css';
 
