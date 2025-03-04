@@ -1,7 +1,8 @@
 import { ActionIcon, Input } from '@mantine/core';
 import { IconPlaystationX, IconSearch } from '@tabler/icons-react';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import classes from './search-bar.module.css';
+import { useDebounce } from 'use-debounce';
 
 interface TextSearchFieldProps {
   onChange: (value: string | undefined) => void;
@@ -15,18 +16,18 @@ export const SearchBar = ({
   value,
   ...rest
 }: TextSearchFieldProps) => {
-  const [text, setText] = useState<string | null>('');
-  const handleOnChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setText(e?.target?.value);
-      onChange(e?.target?.value);
-    },
-    [setText, onChange],
-  );
+  const [text, setText] = useState<string>(value || '');
+  const [debouncedText] = useDebounce(text, 500);
+
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setText(e.target.value);
+  };
 
   useEffect(() => {
-    setText(value ?? '');
-  }, [value, setText]);
+    if (debouncedText !== value) {
+      onChange(debouncedText);
+    }
+  }, [debouncedText, onChange, value]);
 
   return (
     <Input
@@ -41,7 +42,7 @@ export const SearchBar = ({
       }
       rightSectionPointerEvents="all"
       rightSectionProps={{
-        onMouseDown: () => onChange(''),
+        onMouseDown: () => setText(''),
       }}
       rightSection={
         value && (

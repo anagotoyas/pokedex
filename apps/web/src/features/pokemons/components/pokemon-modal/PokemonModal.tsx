@@ -53,7 +53,7 @@ export const PokemonModal = () => {
             </Container>
 
             <div className={classes['body-container']}>
-              <Flex justify="space-between" align="center">
+              <Flex justify="space-between" align="center" wrap="wrap">
                 <Flex justify="space-between" align="center" gap={8}>
                   <Text fw={700}>Name: </Text>
                   <Text>{name}</Text>
