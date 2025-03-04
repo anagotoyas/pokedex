@@ -3,7 +3,7 @@ import {
   PaginationProps as PaginationPropsMantine,
   Select,
 } from '@mantine/core';
-import classes from './pagination.module.css';
+import classes from './paginator.module.css';
 
 interface PaginationProps extends PaginationPropsMantine {
   limit?: number;
