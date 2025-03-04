@@ -1,8 +1,8 @@
 import { Flex } from '@mantine/core';
 import { PokemonCard } from '../pokemon-card';
-import { Pagination } from '../../../../shared/ui/pagination/pagination';
 import { PokemonOverview } from '../../types';
 import { PokemonListSkeleton } from './components/pokemon-list-skeleton';
+import { Pagination } from '../../../../shared/ui/pagination';
 
 interface PokemonListProps {
   pokemons?: PokemonOverview[];

@@ -39,6 +39,7 @@ export const PokemonModal = () => {
         root: classes.modal,
         header: classes.header,
         body: classes.body,
+        content: classes.content,
       }}
     >
       {isLoading ? (

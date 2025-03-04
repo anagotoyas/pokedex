@@ -10,10 +10,10 @@ export type FetchPokemonsResponse = {
 };
 
 export const fetchPokemons = async (filters?: Filter) => {
-  const reponse = await client.get<FetchPokemonsResponse>('/pokemon', {
+  const response = await client.get<FetchPokemonsResponse>('/pokemon', {
     params: filters,
   });
-  return reponse.data;
+  return response.data;
 };
 
 export const getPokemonById = async (id: number) => {

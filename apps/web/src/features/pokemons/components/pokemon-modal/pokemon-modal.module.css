@@ -28,11 +28,15 @@
   right: 0;
 }
 
+.content {
+  min-height: 602px;
+}
+
 .title {
   font-family: 'Train One', system-ui;
   font-weight: 400;
   font-style: normal;
-  font-size: 5rem;
+  font-size: 3rem;
   text-align: center;
   color: var(--color-primary);
   opacity: 0.3;

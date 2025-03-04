@@ -12,5 +12,9 @@ export const useFetchPokemonById = () => {
       selectedPokemon !== null
         ? getPokemonById(selectedPokemon)
         : Promise.reject('No Pokemon selected'),
+    staleTime: 10 * 60 * 1000,
+    gcTime: 60 * 60 * 1000,
+    refetchOnWindowFocus: false,
+    retry: 2,
   });
 };
