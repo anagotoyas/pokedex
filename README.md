@@ -2,6 +2,10 @@
 
 Una aplicación web moderna para explorar y descubrir información sobre Pokémon, construida con React y NestJS.
 
+- Web: https://mkaszp3yju.us-east-1.awsapprunner.com/
+- Server: https://a3cp4nf6m4.us-east-1.awsapprunner.com/api
+- Swagger: https://a3cp4nf6m4.us-east-1.awsapprunner.com/docs
+
 ## 🚀 Características
 
 - Listado de Pokémon con paginación
