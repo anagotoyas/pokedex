@@ -1,9 +1,20 @@
 .header {
   position: fixed;
+  align-items: center;
   top: 0;
   left: 0;
   width: 100%;
   background-color: var(--color-red);
   padding: 1rem 4rem;
   z-index: 100;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
 }

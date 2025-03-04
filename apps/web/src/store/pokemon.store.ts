@@ -2,11 +2,15 @@ import { create } from 'zustand';
 import { Filter } from '../shared/types';
 
 type PokemonStore = {
-  filters?: Filter;
-  setFilters: (filters?: Filter) => void;
+  filters: Filter;
+  setFilters: (filters: Filter) => void;
 };
 
 export const usePokemonStore = create<PokemonStore>((set) => ({
-  filters: undefined,
-  setFilters: (filters) => set({ filters }),
+  filters: {
+    limit: 20,
+    offset: 0,
+  },
+  setFilters: (filters: Partial<Filter>) =>
+    set((state) => ({ filters: { ...state.filters, ...filters } })),
 }));

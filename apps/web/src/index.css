@@ -1,6 +1,6 @@
 :root {
-  --color-normal: #a8a77a;
-  --color-fighting: #c22e28;
+  --color-normal: #9e9e9e;
+  --color-fighting: #e9908d;
   --color-flying: #a98ff3;
   --color-poison: #a33ea1;
   --color-ground: #e2bf65;
@@ -9,13 +9,15 @@
   --color-ghost: #735797;
   --color-steel: #b7b7ce;
   --color-fire: #ee8130;
-  --color-water: #5a5a5a;
+  --color-water: #4db3fd;
   --color-grass: #7ac74c;
-  --color-default: #777777;
+  --color-default: #fda5e6;
   --color-light-purple: #eeeffc;
   --color-red: #e96262;
   --color-white: #fefcfd;
   --color-gray: #9b9b9b;
+  --color-primary: #3f50dc;
+  --color-black: #2a2a2a;
 }
 
 body {
@@ -24,4 +26,5 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
+  color: var(--color-black);
 }

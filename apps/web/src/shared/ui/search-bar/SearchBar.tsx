@@ -13,6 +13,7 @@ export const SearchBar = ({
   onChange,
   placeholder,
   value,
+  ...rest
 }: TextSearchFieldProps) => {
   const [text, setText] = useState<string | null>('');
   const handleOnChange = useCallback(
@@ -53,7 +54,9 @@ export const SearchBar = ({
       autoFocus
       classNames={{
         input: classes.input,
+        section: classes.section,
       }}
+      {...rest}
     />
   );
 };
